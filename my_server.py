@@ -2,7 +2,7 @@ import asyncio
 import psycopg2
 from config import host, user, password, db_name
 
-
+# Имитация сервера проверки
 def validation(command, ready_data):
     request_answer = 'АМОЖНА? РКСОК/1.0\r\n'
     request_body = command + ' ' + ready_data[0] + ' ' + 'РКСОК/1.0\r\n'
@@ -14,7 +14,7 @@ def validation(command, ready_data):
     print(f'[INFO serv] запрос на сервер проврки:\r\n{ready_request}')
     return 'МОЖНА РКСОК/1.0'
 
-
+# Функция получения данных из БД
 def OTDOVAI(ready_data):
     user_name = ready_data[0]
     try:
@@ -57,7 +57,7 @@ def OTDOVAI(ready_data):
     else:
         return 'НИНАШОЛ РКСОК/1.0'
 
-
+# Функция записи данных в БД
 def ZAPISHI(ready_data):
     user_name = ready_data[0]
     user_phone = ' '.join(ready_data[1])
@@ -90,7 +90,7 @@ def ZAPISHI(ready_data):
 
     return 'НОРМАЛДЫКС РКСОК/1.0'
 
-
+# Функция удаления номера из базы данных
 def UDALI(ready_data):
     user_name = ready_data[0]
     try:
